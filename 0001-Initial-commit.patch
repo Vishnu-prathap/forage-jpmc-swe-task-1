@@ -1,0 +1,25 @@
+From eba7ccf43d55600d0030ef7ad7d192b26da6b398 Mon Sep 17 00:00:00 2001
+From: Vishnu Prathap <Vishnuprathap.me19@bmsce.ac.in>
+Date: Mon, 5 Jun 2023 21:48:16 +0530
+Subject: [PATCH] Initial commit
+
+---
+ client3.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/client3.py b/client3.py
+index 3fc09b7..774145a 100644
+--- a/client3.py
++++ b/client3.py
+@@ -35,7 +35,7 @@ def getDataPoint(quote):
+     stock = quote['stock']
+     bid_price = float(quote['top_bid']['price'])
+     ask_price = float(quote['top_ask']['price'])
+-    price = bid_price
++    price = (bid_price + ask_price)/2
+     return stock, bid_price, ask_price, price
+ 
+ 
+-- 
+2.38.1.windows.1
+
