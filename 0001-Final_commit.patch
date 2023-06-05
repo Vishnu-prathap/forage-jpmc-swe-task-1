@@ -1,0 +1,72 @@
+From 9eaa535f1d7492f59b2db746353004644cc2ce42 Mon Sep 17 00:00:00 2001
+From: Vishnu Prathap <Vishnuprathap.me19@bmsce.ac.in>
+Date: Mon, 5 Jun 2023 22:02:39 +0530
+Subject: [PATCH] Final_commit
+
+---
+ 0001-Initial-commit.patch | 25 +++++++++++++++++++++++++
+ client3.py                |  8 ++++++--
+ 2 files changed, 31 insertions(+), 2 deletions(-)
+ create mode 100644 0001-Initial-commit.patch
+
+diff --git a/0001-Initial-commit.patch b/0001-Initial-commit.patch
+new file mode 100644
+index 0000000..0acd8cf
+--- /dev/null
++++ b/0001-Initial-commit.patch
+@@ -0,0 +1,25 @@
++From eba7ccf43d55600d0030ef7ad7d192b26da6b398 Mon Sep 17 00:00:00 2001
++From: Vishnu Prathap <Vishnuprathap.me19@bmsce.ac.in>
++Date: Mon, 5 Jun 2023 21:48:16 +0530
++Subject: [PATCH] Initial commit
++
++---
++ client3.py | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/client3.py b/client3.py
++index 3fc09b7..774145a 100644
++--- a/client3.py
+++++ b/client3.py
++@@ -35,7 +35,7 @@ def getDataPoint(quote):
++     stock = quote['stock']
++     bid_price = float(quote['top_bid']['price'])
++     ask_price = float(quote['top_ask']['price'])
++-    price = bid_price
+++    price = (bid_price + ask_price)/2
++     return stock, bid_price, ask_price, price
++ 
++ 
++-- 
++2.38.1.windows.1
++
+diff --git a/client3.py b/client3.py
+index 774145a..5c14c16 100644
+--- a/client3.py
++++ b/client3.py
+@@ -42,7 +42,9 @@ def getDataPoint(quote):
+ def getRatio(price_a, price_b):
+     """ Get ratio of price_a and price_b """
+     """ ------------- Update this function ------------- """
+-    return 1
++    if (price_b ==0):
++        return 
++    return price_a/price_b
+ 
+ 
+ # Main
+@@ -52,8 +54,10 @@ if __name__ == "__main__":
+         quotes = json.loads(urllib.request.urlopen(QUERY.format(random.random())).read())
+ 
+         """ ----------- Update to get the ratio --------------- """
++        prices = {}
+         for quote in quotes:
+             stock, bid_price, ask_price, price = getDataPoint(quote)
++            prices[stock]=price
+             print("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
+ 
+-        print("Ratio %s" % getRatio(price, price))
++        print("Ratio %s" % getRatio(price["ABC"], price["EDF"]))
+-- 
+2.38.1.windows.1
+
